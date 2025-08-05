@@ -2,7 +2,7 @@ import openai
 import os
 
 # OpenAI API Key
-openai.api_key = os.getenv("OPENAI_API_KEY") or "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Central Style Enforcement
 STYLE_RULES = (
