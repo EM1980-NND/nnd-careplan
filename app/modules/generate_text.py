@@ -19,13 +19,16 @@ STYLE_RULES = (
     "NEVER invent or substitute names like 'Mr. Smith'. Only use the real name provided in the prompt (e.g., Jack Ma)."
 )
 
-def gpt_generate(prompt, model="gpt-4-1106-preview", temperature=0.7):
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=temperature
-    )
-    return response.choices[0].message.content.strip()
+def gpt_generate(prompt, model="gpt-4", temperature=0.7):
+    try:
+        response = openai.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=temperature
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        return f"Error generating response: {e}"
 
 # ===== DIAGNOSIS =====
 def generate_diagnosis_summary(diagnosis, client_name):
